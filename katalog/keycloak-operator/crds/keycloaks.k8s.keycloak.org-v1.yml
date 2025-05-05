@@ -244,6 +244,197 @@ spec:
               instances:
                 description: "Number of Keycloak instances. Default is 1."
                 type: "integer"
+              networkPolicy:
+                description: "Controls the ingress traffic flow into Keycloak pods."
+                properties:
+                  enabled:
+                    default: true
+                    description: "Enables or disables the ingress traffic control."
+                    type: "boolean"
+                  http:
+                    description: "A list of sources which should be able to access\
+                      \ this endpoint. Items in this list are combined using a logical\
+                      \ OR operation. If this field is empty or missing, this rule\
+                      \ matches all sources (traffic not restricted by source). If\
+                      \ this field is present and contains at least one item, this\
+                      \ rule allows traffic only if the traffic matches at least one\
+                      \ item in the from list."
+                    items:
+                      properties:
+                        ipBlock:
+                          properties:
+                            cidr:
+                              type: "string"
+                            except:
+                              items:
+                                type: "string"
+                              type: "array"
+                          type: "object"
+                        namespaceSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                        podSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                      type: "object"
+                    type: "array"
+                  https:
+                    description: "A list of sources which should be able to access\
+                      \ this endpoint. Items in this list are combined using a logical\
+                      \ OR operation. If this field is empty or missing, this rule\
+                      \ matches all sources (traffic not restricted by source). If\
+                      \ this field is present and contains at least one item, this\
+                      \ rule allows traffic only if the traffic matches at least one\
+                      \ item in the from list."
+                    items:
+                      properties:
+                        ipBlock:
+                          properties:
+                            cidr:
+                              type: "string"
+                            except:
+                              items:
+                                type: "string"
+                              type: "array"
+                          type: "object"
+                        namespaceSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                        podSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                      type: "object"
+                    type: "array"
+                  management:
+                    description: "A list of sources which should be able to access\
+                      \ this endpoint. Items in this list are combined using a logical\
+                      \ OR operation. If this field is empty or missing, this rule\
+                      \ matches all sources (traffic not restricted by source). If\
+                      \ this field is present and contains at least one item, this\
+                      \ rule allows traffic only if the traffic matches at least one\
+                      \ item in the from list."
+                    items:
+                      properties:
+                        ipBlock:
+                          properties:
+                            cidr:
+                              type: "string"
+                            except:
+                              items:
+                                type: "string"
+                              type: "array"
+                          type: "object"
+                        namespaceSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                        podSelector:
+                          properties:
+                            matchExpressions:
+                              items:
+                                properties:
+                                  key:
+                                    type: "string"
+                                  operator:
+                                    type: "string"
+                                  values:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                type: "object"
+                              type: "array"
+                            matchLabels:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                          type: "object"
+                      type: "object"
+                    type: "array"
+                type: "object"
               proxy:
                 description: "In this section you can configure Keycloak's reverse\
                   \ proxy setting"
@@ -261,6 +452,8 @@ spec:
                     items:
                       properties:
                         name:
+                          type: "string"
+                        request:
                           type: "string"
                       type: "object"
                     type: "array"
@@ -674,6 +867,45 @@ spec:
                   \ the start command. If left unspecified the operator will assume\
                   \ custom images have already been augmented."
                 type: "boolean"
+              tracing:
+                description: "In this section you can configure OpenTelemetry Tracing\
+                  \ for Keycloak."
+                properties:
+                  compression:
+                    description: "OpenTelemetry compression method used to compress\
+                      \ payloads. If unset, compression is disabled. Possible values\
+                      \ are: gzip, none."
+                    type: "string"
+                  enabled:
+                    description: "Enables the OpenTelemetry tracing."
+                    type: "boolean"
+                  endpoint:
+                    description: "OpenTelemetry endpoint to connect to."
+                    type: "string"
+                  protocol:
+                    description: "OpenTelemetry protocol used for the telemetry data\
+                      \ (default 'grpc'). For more information, check the Tracing\
+                      \ guide."
+                    type: "string"
+                  resourceAttributes:
+                    additionalProperties:
+                      type: "string"
+                    description: "OpenTelemetry resource attributes present in the\
+                      \ exported trace to characterize the telemetry producer."
+                    type: "object"
+                  samplerRatio:
+                    description: "OpenTelemetry sampler ratio. Probability that a\
+                      \ span will be sampled. Expected double value in interval [0,1]."
+                    type: "number"
+                  samplerType:
+                    description: "OpenTelemetry sampler to use for tracing (default\
+                      \ 'traceidratio'). For more information, check the Tracing guide."
+                    type: "string"
+                  serviceName:
+                    description: "OpenTelemetry service name. Takes precedence over\
+                      \ 'service.name' defined in the 'resourceAttributes' map."
+                    type: "string"
+                type: "object"
               transaction:
                 description: "In this section you can find all properties related\
                   \ to the settings of transaction behavior."
@@ -1460,6 +1692,8 @@ spec:
                                         properties:
                                           name:
                                             type: "string"
+                                          request:
+                                            type: "string"
                                         type: "object"
                                       type: "array"
                                     limits:
@@ -2011,6 +2245,8 @@ spec:
                                       items:
                                         properties:
                                           name:
+                                            type: "string"
+                                          request:
                                             type: "string"
                                         type: "object"
                                       type: "array"
@@ -2570,6 +2806,8 @@ spec:
                                         properties:
                                           name:
                                             type: "string"
+                                          request:
+                                            type: "string"
                                         type: "object"
                                       type: "array"
                                     limits:
@@ -2793,15 +3031,38 @@ spec:
                               properties:
                                 name:
                                   type: "string"
-                                source:
-                                  properties:
-                                    resourceClaimName:
-                                      type: "string"
-                                    resourceClaimTemplateName:
-                                      type: "string"
-                                  type: "object"
+                                resourceClaimName:
+                                  type: "string"
+                                resourceClaimTemplateName:
+                                  type: "string"
                               type: "object"
                             type: "array"
+                          resources:
+                            properties:
+                              claims:
+                                items:
+                                  properties:
+                                    name:
+                                      type: "string"
+                                    request:
+                                      type: "string"
+                                  type: "object"
+                                type: "array"
+                              limits:
+                                additionalProperties:
+                                  anyOf:
+                                  - type: "integer"
+                                  - type: "string"
+                                  x-kubernetes-int-or-string: true
+                                type: "object"
+                              requests:
+                                additionalProperties:
+                                  anyOf:
+                                  - type: "integer"
+                                  - type: "string"
+                                  x-kubernetes-int-or-string: true
+                                type: "object"
+                            type: "object"
                           restartPolicy:
                             type: "string"
                           runtimeClassName:
@@ -2834,6 +3095,8 @@ spec:
                                 type: "boolean"
                               runAsUser:
                                 type: "integer"
+                              seLinuxChangePolicy:
+                                type: "string"
                               seLinuxOptions:
                                 properties:
                                   level:
@@ -2856,6 +3119,8 @@ spec:
                                 items:
                                   type: "integer"
                                 type: "array"
+                              supplementalGroupsPolicy:
+                                type: "string"
                               sysctls:
                                 items:
                                   properties:
@@ -3325,6 +3590,13 @@ spec:
                                     type:
                                       type: "string"
                                   type: "object"
+                                image:
+                                  properties:
+                                    pullPolicy:
+                                      type: "string"
+                                    reference:
+                                      type: "string"
+                                  type: "object"
                                 iscsi:
                                   properties:
                                     chapAuthDiscovery:
@@ -3623,6 +3895,26 @@ spec:
                         type: "object"
                     type: "object"
                 type: "object"
+              update:
+                description: "Configuration related to Keycloak deployment updates."
+                properties:
+                  revision:
+                    description: "When use the Explicit strategy, the revision signals\
+                      \ if a rolling update can be used or not."
+                    type: "string"
+                  strategy:
+                    default: "RecreateOnImageChange"
+                    description: "Sets the update strategy to use."
+                    enum:
+                    - "Auto"
+                    - "Explicit"
+                    - "RecreateOnImageChange"
+                    type: "string"
+                type: "object"
+                x-kubernetes-validations:
+                - message: "The 'revision' field is required when 'Explicit' strategy\
+                    \ is used"
+                  rule: "self.strategy != 'Explicit' || has(self.revision)"
             type: "object"
           status:
             properties:
