@@ -7,7 +7,7 @@
   Keycloak Add-On Module
 </h1>
 
-![Release](https://img.shields.io/badge/Latest%20Release-v2.2.0-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.3.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/add-on-keycloak?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -24,8 +24,8 @@ The following packages are included in the Fury Kubernetes Keycloak katalog:
 
 | Package                                                | Version                         | Description                                                                                 |
 | ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------- |
-| [keycloak-operator](katalog/keycloak-operator)         | `26.0.2`                        | Operator to deploy and manage Keycloak and related resources |
-| [keycloak-operated](katalog/keycloak-operated)         | `26.0.2`                        | High availability KeyCloak using native Kubernetes namespace based discovery. This will form a KeyCloak cluster where the members will be all the KeyCloaks pods in the same Kubernetes namespace.                         |
+| [keycloak-operator](katalog/keycloak-operator)         | `26.2.2`                        | Operator to deploy and manage Keycloak and related resources |
+| [keycloak-operated](katalog/keycloak-operated)         | `26.2.2`                        | High availability KeyCloak using native Kubernetes namespace based discovery. This will form a KeyCloak cluster where the members will be all the KeyCloaks pods in the same Kubernetes namespace.                         |
 
 Click on each package to see its full documentation.
 
@@ -33,10 +33,10 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.28.x`           | :white_check_mark: | No known issues |
 | `1.29.x`           | :white_check_mark: | No known issues |
 | `1.30.x`           | :white_check_mark: | No known issues |
 | `1.31.x`           | :white_check_mark: | No known issues |
+| `1.32.x`           | :white_check_mark: | No known issues |
 
 ## Usage
 
@@ -54,9 +54,9 @@ Click on each package to see its full documentation.
 ```yaml
 bases:
   - name: keycloak/keycloak-operator
-    version: "v2.2.0"
+    version: "v2.3.0"
   - name: keycloak/keycloak-operated
-    version: "v2.2.0"
+    version: "v2.3.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.

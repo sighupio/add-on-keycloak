@@ -64,6 +64,343 @@ spec:
                     type: "boolean"
                   adminEventsEnabled:
                     type: "boolean"
+                  adminPermissionsClient:
+                    properties:
+                      access:
+                        additionalProperties:
+                          type: "boolean"
+                        type: "object"
+                      adminUrl:
+                        type: "string"
+                      alwaysDisplayInConsole:
+                        type: "boolean"
+                      attributes:
+                        additionalProperties:
+                          type: "string"
+                        type: "object"
+                      authenticationFlowBindingOverrides:
+                        additionalProperties:
+                          type: "string"
+                        type: "object"
+                      authorizationServicesEnabled:
+                        type: "boolean"
+                      authorizationSettings:
+                        properties:
+                          allowRemoteResourceManagement:
+                            type: "boolean"
+                          authorizationSchema:
+                            properties:
+                              resourceTypes:
+                                additionalProperties:
+                                  properties:
+                                    groupType:
+                                      type: "string"
+                                    scopeAliases:
+                                      additionalProperties:
+                                        items:
+                                          type: "string"
+                                        type: "array"
+                                      type: "object"
+                                    scopes:
+                                      items:
+                                        type: "string"
+                                      type: "array"
+                                    type:
+                                      type: "string"
+                                  type: "object"
+                                type: "object"
+                            type: "object"
+                          clientId:
+                            type: "string"
+                          decisionStrategy:
+                            enum:
+                            - "AFFIRMATIVE"
+                            - "CONSENSUS"
+                            - "UNANIMOUS"
+                            type: "string"
+                          id:
+                            type: "string"
+                          name:
+                            type: "string"
+                          policies:
+                            items:
+                              properties:
+                                config:
+                                  additionalProperties:
+                                    type: "string"
+                                  type: "object"
+                                decisionStrategy:
+                                  enum:
+                                  - "AFFIRMATIVE"
+                                  - "CONSENSUS"
+                                  - "UNANIMOUS"
+                                  type: "string"
+                                description:
+                                  type: "string"
+                                id:
+                                  type: "string"
+                                logic:
+                                  enum:
+                                  - "NEGATIVE"
+                                  - "POSITIVE"
+                                  type: "string"
+                                name:
+                                  type: "string"
+                                owner:
+                                  type: "string"
+                                policies:
+                                  items:
+                                    type: "string"
+                                  type: "array"
+                                resourceType:
+                                  type: "string"
+                                resources:
+                                  items:
+                                    type: "string"
+                                  type: "array"
+                                resourcesData:
+                                  items:
+                                    properties:
+                                      _id:
+                                        type: "string"
+                                      attributes:
+                                        additionalProperties:
+                                          items:
+                                            type: "string"
+                                          type: "array"
+                                        type: "object"
+                                      displayName:
+                                        type: "string"
+                                      icon_uri:
+                                        type: "string"
+                                      name:
+                                        type: "string"
+                                      owner:
+                                        properties:
+                                          id:
+                                            type: "string"
+                                          name:
+                                            type: "string"
+                                        type: "object"
+                                      ownerManagedAccess:
+                                        type: "boolean"
+                                      scopes:
+                                        items:
+                                          properties:
+                                            displayName:
+                                              type: "string"
+                                            iconUri:
+                                              type: "string"
+                                            id:
+                                              type: "string"
+                                            name:
+                                              type: "string"
+                                          type: "object"
+                                        type: "array"
+                                      type:
+                                        type: "string"
+                                      uris:
+                                        items:
+                                          type: "string"
+                                        type: "array"
+                                    type: "object"
+                                  type: "array"
+                                scopes:
+                                  items:
+                                    type: "string"
+                                  type: "array"
+                                scopesData:
+                                  items:
+                                    properties:
+                                      displayName:
+                                        type: "string"
+                                      iconUri:
+                                        type: "string"
+                                      id:
+                                        type: "string"
+                                      name:
+                                        type: "string"
+                                    type: "object"
+                                  type: "array"
+                                type:
+                                  type: "string"
+                              type: "object"
+                            type: "array"
+                          policyEnforcementMode:
+                            enum:
+                            - "DISABLED"
+                            - "ENFORCING"
+                            - "PERMISSIVE"
+                            type: "string"
+                          resources:
+                            items:
+                              properties:
+                                _id:
+                                  type: "string"
+                                attributes:
+                                  additionalProperties:
+                                    items:
+                                      type: "string"
+                                    type: "array"
+                                  type: "object"
+                                displayName:
+                                  type: "string"
+                                icon_uri:
+                                  type: "string"
+                                name:
+                                  type: "string"
+                                owner:
+                                  properties:
+                                    id:
+                                      type: "string"
+                                    name:
+                                      type: "string"
+                                  type: "object"
+                                ownerManagedAccess:
+                                  type: "boolean"
+                                scopes:
+                                  items:
+                                    properties:
+                                      displayName:
+                                        type: "string"
+                                      iconUri:
+                                        type: "string"
+                                      id:
+                                        type: "string"
+                                      name:
+                                        type: "string"
+                                    type: "object"
+                                  type: "array"
+                                type:
+                                  type: "string"
+                                uris:
+                                  items:
+                                    type: "string"
+                                  type: "array"
+                              type: "object"
+                            type: "array"
+                          scopes:
+                            items:
+                              properties:
+                                displayName:
+                                  type: "string"
+                                iconUri:
+                                  type: "string"
+                                id:
+                                  type: "string"
+                                name:
+                                  type: "string"
+                              type: "object"
+                            type: "array"
+                        type: "object"
+                      baseUrl:
+                        type: "string"
+                      bearerOnly:
+                        type: "boolean"
+                      clientAuthenticatorType:
+                        type: "string"
+                      clientId:
+                        type: "string"
+                      clientTemplate:
+                        type: "string"
+                      consentRequired:
+                        type: "boolean"
+                      defaultClientScopes:
+                        items:
+                          type: "string"
+                        type: "array"
+                      defaultRoles:
+                        items:
+                          type: "string"
+                        type: "array"
+                      description:
+                        type: "string"
+                      directAccessGrantsEnabled:
+                        type: "boolean"
+                      directGrantsOnly:
+                        type: "boolean"
+                      enabled:
+                        type: "boolean"
+                      frontchannelLogout:
+                        type: "boolean"
+                      fullScopeAllowed:
+                        type: "boolean"
+                      id:
+                        type: "string"
+                      implicitFlowEnabled:
+                        type: "boolean"
+                      name:
+                        type: "string"
+                      nodeReRegistrationTimeout:
+                        type: "integer"
+                      notBefore:
+                        type: "integer"
+                      optionalClientScopes:
+                        items:
+                          type: "string"
+                        type: "array"
+                      origin:
+                        type: "string"
+                      protocol:
+                        type: "string"
+                      protocolMappers:
+                        items:
+                          properties:
+                            config:
+                              additionalProperties:
+                                type: "string"
+                              type: "object"
+                            consentRequired:
+                              type: "boolean"
+                            consentText:
+                              type: "string"
+                            id:
+                              type: "string"
+                            name:
+                              type: "string"
+                            protocol:
+                              type: "string"
+                            protocolMapper:
+                              type: "string"
+                          type: "object"
+                        type: "array"
+                      publicClient:
+                        type: "boolean"
+                      redirectUris:
+                        items:
+                          type: "string"
+                        type: "array"
+                      registeredNodes:
+                        additionalProperties:
+                          type: "integer"
+                        type: "object"
+                      registrationAccessToken:
+                        type: "string"
+                      rootUrl:
+                        type: "string"
+                      secret:
+                        type: "string"
+                      serviceAccountsEnabled:
+                        type: "boolean"
+                      standardFlowEnabled:
+                        type: "boolean"
+                      surrogateAuthRequired:
+                        type: "boolean"
+                      type:
+                        type: "string"
+                      useTemplateConfig:
+                        type: "boolean"
+                      useTemplateMappers:
+                        type: "boolean"
+                      useTemplateScope:
+                        type: "boolean"
+                      webOrigins:
+                        items:
+                          type: "string"
+                        type: "array"
+                    type: "object"
+                  adminPermissionsEnabled:
+                    type: "boolean"
                   adminTheme:
                     type: "string"
                   applicationScopeMappings:
@@ -110,6 +447,28 @@ spec:
                           properties:
                             allowRemoteResourceManagement:
                               type: "boolean"
+                            authorizationSchema:
+                              properties:
+                                resourceTypes:
+                                  additionalProperties:
+                                    properties:
+                                      groupType:
+                                        type: "string"
+                                      scopeAliases:
+                                        additionalProperties:
+                                          items:
+                                            type: "string"
+                                          type: "array"
+                                        type: "object"
+                                      scopes:
+                                        items:
+                                          type: "string"
+                                        type: "array"
+                                      type:
+                                        type: "string"
+                                    type: "object"
+                                  type: "object"
+                              type: "object"
                             clientId:
                               type: "string"
                             decisionStrategy:
@@ -152,6 +511,8 @@ spec:
                                     items:
                                       type: "string"
                                     type: "array"
+                                  resourceType:
+                                    type: "string"
                                   resources:
                                     items:
                                       type: "string"
@@ -484,6 +845,11 @@ spec:
                     type: "object"
                   bruteForceProtected:
                     type: "boolean"
+                  bruteForceStrategy:
+                    enum:
+                    - "LINEAR"
+                    - "MULTIPLE"
+                    type: "string"
                   certificate:
                     type: "string"
                   clientAuthenticationFlow:
@@ -638,6 +1004,28 @@ spec:
                           properties:
                             allowRemoteResourceManagement:
                               type: "boolean"
+                            authorizationSchema:
+                              properties:
+                                resourceTypes:
+                                  additionalProperties:
+                                    properties:
+                                      groupType:
+                                        type: "string"
+                                      scopeAliases:
+                                        additionalProperties:
+                                          items:
+                                            type: "string"
+                                          type: "array"
+                                        type: "object"
+                                      scopes:
+                                        items:
+                                          type: "string"
+                                        type: "array"
+                                      type:
+                                        type: "string"
+                                    type: "object"
+                                  type: "object"
+                              type: "object"
                             clientId:
                               type: "string"
                             decisionStrategy:
@@ -680,6 +1068,8 @@ spec:
                                     items:
                                       type: "string"
                                     type: "array"
+                                  resourceType:
+                                    type: "string"
                                   resources:
                                     items:
                                       type: "string"
@@ -1318,6 +1708,8 @@ spec:
                                 type: "string"
                               digits:
                                 type: "integer"
+                              federationLink:
+                                type: "string"
                               hashIterations:
                                 type: "integer"
                               hashedSaltedValue:
@@ -1951,6 +2343,28 @@ spec:
                           properties:
                             allowRemoteResourceManagement:
                               type: "boolean"
+                            authorizationSchema:
+                              properties:
+                                resourceTypes:
+                                  additionalProperties:
+                                    properties:
+                                      groupType:
+                                        type: "string"
+                                      scopeAliases:
+                                        additionalProperties:
+                                          items:
+                                            type: "string"
+                                          type: "array"
+                                        type: "object"
+                                      scopes:
+                                        items:
+                                          type: "string"
+                                        type: "array"
+                                      type:
+                                        type: "string"
+                                    type: "object"
+                                  type: "object"
+                              type: "object"
                             clientId:
                               type: "string"
                             decisionStrategy:
@@ -1993,6 +2407,8 @@ spec:
                                     items:
                                       type: "string"
                                     type: "array"
+                                  resourceType:
+                                    type: "string"
                                   resources:
                                     items:
                                       type: "string"
@@ -2400,6 +2816,8 @@ spec:
                                       type: "string"
                                     digits:
                                       type: "integer"
+                                    federationLink:
+                                      type: "string"
                                     hashIterations:
                                       type: "integer"
                                     hashedSaltedValue:
@@ -2933,6 +3351,8 @@ spec:
                                 type: "string"
                               digits:
                                 type: "integer"
+                              federationLink:
+                                type: "string"
                               hashIterations:
                                 type: "integer"
                               hashedSaltedValue:
@@ -3068,6 +3488,8 @@ spec:
                           type: "string"
                       type: "object"
                     type: "array"
+                  verifiableCredentialsEnabled:
+                    type: "boolean"
                   verifyEmail:
                     type: "boolean"
                   waitIncrementSeconds:
@@ -3137,6 +3559,8 @@ spec:
                     items:
                       properties:
                         name:
+                          type: "string"
+                        request:
                           type: "string"
                       type: "object"
                     type: "array"
