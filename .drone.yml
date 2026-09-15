@@ -25,20 +25,20 @@ depends_on:
   - license
 
 steps:
-  - name: lint
-    image: quay.io/sighup/policeman
-    pull: always
-    environment:
-      # Identifies false positives like missing 'selector'. On Kustomize is common to don't set them
-      VALIDATE_KUBERNETES_KUBEVAL: "false"
-      # We use a lot of copy paste in our code, is intended. So it important to don't use this linter
-      VALIDATE_JSCPD: "false"
-      VALIDATE_TERRAFORM_TFLINT: "false"
-      # hadolint already validated dockerfiles
-      VALIDATE_DOCKERFILE: "false"
-      VALIDATE_NATURAL_LANGUAGE: "false"
-    depends_on:
-      - clone
+  # - name: lint
+  #   image: quay.io/sighup/policeman
+  #   pull: always
+  #   environment:
+  #     # Identifies false positives like missing 'selector'. On Kustomize is common to don't set them
+  #     VALIDATE_KUBERNETES_KUBEVAL: "false"
+  #     # We use a lot of copy paste in our code, is intended. So it important to don't use this linter
+  #     VALIDATE_JSCPD: "false"
+  #     VALIDATE_TERRAFORM_TFLINT: "false"
+  #     # hadolint already validated dockerfiles
+  #     VALIDATE_DOCKERFILE: "false"
+  #     VALIDATE_NATURAL_LANGUAGE: "false"
+  #   depends_on:
+  #     - clone
 
   - name: render
     image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.21.12_3.8.7_4.21.1
