@@ -12,7 +12,7 @@ metadata:
 spec:
   endpoints:
     - interval: 10s
-      port: http
+      port: management
       scheme: http
       path: /metrics
   selector:

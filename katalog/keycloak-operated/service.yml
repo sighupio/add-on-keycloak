@@ -12,9 +12,9 @@ metadata:
     component: metrics
 spec:
   ports:
-  - name: http
-    port: 8080
-    targetPort: 8080
+  - name: management
+    port: 9000
+    targetPort: 9000
     protocol: TCP
   selector:
     app: keycloak
